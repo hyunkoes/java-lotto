@@ -3,7 +3,7 @@ package lotto.contant;
 public class LottoConst {
     public static final int LOTTO_NUM_START = 1;
     public static final int LOTTO_NUM_END = 45;
-    public static final int WINNING_NUM_SIZE = 6;
+    public static final int LOTTO_NUM_SIZE = 6;
     public static final int BONUS_NUM_SIZE = 1;
     public static final int LOTTO_FEE = 1000;
     public static final int FIRST_CONDITION = 6;
