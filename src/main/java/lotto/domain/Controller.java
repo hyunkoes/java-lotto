@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.contant.LottoConst;
 import lotto.util.ListUtil;
 import lotto.util.RandomGenerator;
+import lotto.util.UnitConverter;
+import lotto.validator.InputValidator;
 import lotto.view.View;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +27,12 @@ public class Controller {
     public void run(){
         int lottoNums = getLottoFee();
         this.lottos = publishLottos(lottoNums);
-        View.printLottoInfo(this.lottos);
         List<Integer> winningNums = getLottoWinningNums();
         List<Integer> bonusNums = getLottoBonusNums();
+        List<Integer> winningResults = LottoJudge.judgeLottosPrize(this.lottos, winningNums, bonusNums);
+        View.printLottoResult(winningResults);
+        View.printMessage(UnitConverter.convertWonNotation(""));
+
     }
 
     private List<Integer> getLottoBonusNums() {
@@ -45,14 +51,17 @@ public class Controller {
     private int getLottoFee(){
         View.printMessage(LottoConst.START_MESSAGE);
         String input = Console.readLine().trim();
-        // validator.validateLottoFee(input);
-        return Integer.parseInt(input);
+        InputValidator.validateLottoFee(input);
+        int lottoCount = Integer.parseInt(input) / LottoConst.LOTTO_FEE;
+        View.printMessage(lottoCount+LottoConst.BUYING_MESSAGE);
+        return lottoCount;
     }
     private List<Lotto> publishLottos(int num){
         List<Lotto> newLottos = new ArrayList<>();
         for ( int i = 0 ; i < num ; i ++ ){
             newLottos.add(new Lotto(RandomGenerator.generateRandomNums()));
         }
+        View.printLottoInfo(newLottos);
         return newLottos;
     }
 }
