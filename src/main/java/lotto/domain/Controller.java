@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.contant.LottoConst;
+import lotto.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +23,14 @@ public class Controller {
         System.out.print(LottoConst.START_MESSAGE);
         String input = Console.readLine().trim();
         // validator.validateLottoFee(input);
+        this.lottos = publishLottos(Integer.parseInt(input));
+
+    }
+    private List<Lotto> publishLottos(int num){
+        List<Lotto> newLottos = new ArrayList<>();
+        for ( int i = 0 ; i < num ; i ++ ){
+            newLottos.add(new Lotto(RandomGenerator.generateRandomNums(num)));
+        }
+        return newLottos;
     }
 }
