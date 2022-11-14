@@ -26,18 +26,22 @@ public class Controller {
         this.lottos = publishLottos(lottoNums);
         View.printLottoInfo(this.lottos);
         List<Integer> winningNums = getLottoWinningNums();
-        ListUtil.printList(winningNums);
+        List<Integer> bonusNums = getLottoBonusNums();
+    }
+
+    private List<Integer> getLottoBonusNums() {
+        View.printMessage(LottoConst.BONNUS_NUM_SET_MESSAGE);
     }
 
     private List<Integer> getLottoWinningNums() {
-        System.out.print(LottoConst.WINNIG_NUM_SET_MESSAGE);
+        View.printMessage(LottoConst.WINNIG_NUM_SET_MESSAGE);
         String input = Console.readLine().trim();
         // validator.validateLottoFee(input);
         return ListUtil.stringToIntegerList(input);
     }
 
     private int getLottoFee(){
-        System.out.print(LottoConst.START_MESSAGE);
+        View.printMessage(LottoConst.START_MESSAGE);
         String input = Console.readLine().trim();
         // validator.validateLottoFee(input);
         return Integer.parseInt(input);
