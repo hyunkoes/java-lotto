@@ -21,4 +21,7 @@ public class View {
             System.out.println(LottoConst.WINNING_MESSAGE[i] + " - " + winningResults.get(i)+ "개");
         }
     }
+    public static void printRevenue(String revenue){
+        System.out.print("총 수익률은 "+revenue+"% 입니다.");
+    }
 }
