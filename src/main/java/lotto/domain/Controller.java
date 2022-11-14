@@ -25,10 +25,16 @@ public class Controller {
         int lottoNums = getLottoFee();
         this.lottos = publishLottos(lottoNums);
         View.printLottoInfo(this.lottos);
-//        List<Integer> winningNums = getLottoWinningNums();
-
+        List<Integer> winningNums = getLottoWinningNums();
+        ListUtil.printList(winningNums);
     }
 
+    private List<Integer> getLottoWinningNums() {
+        System.out.print(LottoConst.WINNIG_NUM_SET_MESSAGE);
+        String input = Console.readLine().trim();
+        // validator.validateLottoFee(input);
+        return ListUtil.stringToIntegerList(input);
+    }
 
     private int getLottoFee(){
         System.out.print(LottoConst.START_MESSAGE);
