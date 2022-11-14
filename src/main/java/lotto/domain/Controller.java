@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Controller {
     List<Lotto> lottos = new ArrayList<>();
+
     /**
      * Lottery 게임의 전체적인 흐름을 제어한다.
      * 1. User에게 구매 금액을 물어본다.
@@ -22,17 +23,17 @@ public class Controller {
      * 4. User에게 당첨번호와 보너스번호를 입력받는다.
      * 5. 당첨 결과를 계산하여 출력한다.
      * 6. 수익률을 계산하여 출력하고 종료한다.
-     * */
+     */
 
-    public void run(){
+    public void run() {
         int lottoNums = getLottoFee();
         this.lottos = publishLottos(lottoNums);
         List<Integer> winningNums = getLottoWinningNums();
         List<Integer> bonusNums = getLottoBonusNums();
         List<Integer> winningResults = LottoJudge.judgeLottosPrize(this.lottos, winningNums, bonusNums);
         View.printLottoResult(winningResults);
-        View.printMessage(UnitConverter.convertWonNotation(""));
-
+        BigInteger prize = LottoJudge.getWinningPrize(winningResults);
+        View.printMessage(UnitConverter.convertWonNotation(prize.toString()));
     }
 
     private List<Integer> getLottoBonusNums() {
@@ -44,21 +45,22 @@ public class Controller {
     private List<Integer> getLottoWinningNums() {
         View.printMessage(LottoConst.WINNING_NUM_SET_MESSAGE);
         String input = Console.readLine().trim();
-        // validator.validateLottoFee(input);
+        InputValidator.validateWinningNums(input);
         return ListUtil.stringToIntegerList(input);
     }
 
-    private int getLottoFee(){
+    private int getLottoFee() {
         View.printMessage(LottoConst.START_MESSAGE);
         String input = Console.readLine().trim();
         InputValidator.validateLottoFee(input);
         int lottoCount = Integer.parseInt(input) / LottoConst.LOTTO_FEE;
-        View.printMessage(lottoCount+LottoConst.BUYING_MESSAGE);
+        View.printMessage(lottoCount + LottoConst.BUYING_MESSAGE);
         return lottoCount;
     }
-    private List<Lotto> publishLottos(int num){
+
+    private List<Lotto> publishLottos(int num) {
         List<Lotto> newLottos = new ArrayList<>();
-        for ( int i = 0 ; i < num ; i ++ ){
+        for (int i = 0; i < num; i++) {
             newLottos.add(new Lotto(RandomGenerator.generateRandomNums()));
         }
         View.printLottoInfo(newLottos);
