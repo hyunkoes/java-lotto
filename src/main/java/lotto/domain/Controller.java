@@ -39,7 +39,7 @@ public class Controller {
     private List<Lotto> publishLottos(int num){
         List<Lotto> newLottos = new ArrayList<>();
         for ( int i = 0 ; i < num ; i ++ ){
-            newLottos.add(new Lotto(RandomGenerator.generateRandomNums(num)));
+            newLottos.add(new Lotto(RandomGenerator.generateRandomNums()));
         }
         return newLottos;
     }
