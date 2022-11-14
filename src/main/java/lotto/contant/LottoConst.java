@@ -1,6 +1,6 @@
 package lotto.contant;
 
-public class lottoConst {
+public class LottoConst {
     public static final int WINNING_NUM_SIZE = 6;
     public static final int BONNUS_NUM_SIZE = 1;
     public static final int LOTTO_FEE = 1000;
