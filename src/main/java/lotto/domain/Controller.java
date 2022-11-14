@@ -30,11 +30,13 @@ public class Controller {
     }
 
     private List<Integer> getLottoBonusNums() {
-        View.printMessage(LottoConst.BONNUS_NUM_SET_MESSAGE);
+        View.printMessage(LottoConst.BONUS_NUM_SET_MESSAGE);
+        String input = Console.readLine().trim();
+        return ListUtil.stringToIntegerList(input);
     }
 
     private List<Integer> getLottoWinningNums() {
-        View.printMessage(LottoConst.WINNIG_NUM_SET_MESSAGE);
+        View.printMessage(LottoConst.WINNING_NUM_SET_MESSAGE);
         String input = Console.readLine().trim();
         // validator.validateLottoFee(input);
         return ListUtil.stringToIntegerList(input);
