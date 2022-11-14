@@ -2,18 +2,19 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class RandomGenerator {
     public static List<Integer> generateRandomNums(int size){
-        List<Integer> randoms = new ArrayList<>();
+        Queue<Integer> randoms = new PriorityQueue<>();
         while (randoms.size() < size) {
             int randomNumber = Randoms.pickNumberInRange(1, 45);
             if (!randoms.contains(randomNumber)) {
                 randoms.add(randomNumber);
             }
         }
-        return randoms;
+        return (List) randoms;
     }
 }
