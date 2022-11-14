@@ -16,5 +16,14 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public String toString(){
+        String lottoInfo= "[";
+        for ( int i = 0 ; i < numbers.size() ; i ++ ){
+            lottoInfo += numbers.get(i);
+            if ( i < numbers.size() - 1 ) lottoInfo += ", ";
+        }
+        lottoInfo += "]";
+        return lottoInfo;
+    }
+
 }
