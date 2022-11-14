@@ -2,7 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.contant.LottoConst;
+import lotto.util.ListUtil;
 import lotto.util.RandomGenerator;
+import lotto.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +22,19 @@ public class Controller {
      * */
 
     public void run(){
+        int lottoNums = getLottoFee();
+        this.lottos = publishLottos(lottoNums);
+        View.printLottoInfo(this.lottos);
+//        List<Integer> winningNums = getLottoWinningNums();
+
+    }
+
+
+    private int getLottoFee(){
         System.out.print(LottoConst.START_MESSAGE);
         String input = Console.readLine().trim();
         // validator.validateLottoFee(input);
-        this.lottos = publishLottos(Integer.parseInt(input));
-
+        return Integer.parseInt(input);
     }
     private List<Lotto> publishLottos(int num){
         List<Lotto> newLottos = new ArrayList<>();
