@@ -8,7 +8,9 @@ import lotto.util.UnitConverter;
 import lotto.validator.InputValidator;
 import lotto.view.View;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,12 @@ public class Controller {
         List<Integer> winningResults = LottoJudge.judgeLottosPrize(this.lottos, winningNums, bonusNums);
         View.printLottoResult(winningResults);
         BigInteger prize = LottoJudge.getWinningPrize(winningResults);
-        View.printMessage(UnitConverter.convertWonNotation(prize.toString()));
+        BigDecimal revenue = calculateRevenue(new BigDecimal(prize), new BigDecimal(lottoNums * LottoConst.LOTTO_FEE / 100));
+        View.printRevenue(revenue.toString());
+    }
+
+    private BigDecimal calculateRevenue(BigDecimal prize, BigDecimal lottoFeePerUnit) {
+        return new BigDecimal(prize.divide(lottoFeePerUnit).toString()).setScale(1, RoundingMode.HALF_EVEN);
     }
 
     private List<Integer> getLottoBonusNums() {
