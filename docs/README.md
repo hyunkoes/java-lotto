@@ -22,11 +22,8 @@
 ### 구현 계획
 - 지난 주차에서 느낀 대로 객체 설계를 먼저 진행한다.
   - `LottoGenerator`: Lotto 응모 번호를 생성하는 객체
-  - `Admin`: Lotto의 당첨 번호, 보너스 번호를 입력할 객체
-  - `AscendingConverter`: 번호를 오름차순으로 정렬해주는 객체 
-    - `LottoGenerator`와 `Admin`가 상속하여 사용한다.
+  - `LottoManager`: Lotto의 당첨 번호, 보너스 번호를 입력하고, 유저의 Lotto를 받아 당첨 등수를 계산하는 객체
   - `User`: Lotto 구매 금액을 입력하고 `LottoGenerator`가 생성한 Lotto를 List로 갖는 객체
-  - `LottoWinningCalculator`: Lotto 당첨 등수를 계산하는 객체
 - 모든 기능을 완성하고 테스트를 진행하는 것이 아닌 함수 작성 후 바로 테스트를 진행한다.
   - 커밋 로그 또한 절차를 따라 진행한다.
 - 클래스 간 의존성을 최대한 줄여 테스트 코드 작성에 방해되지 않도록 한다.
@@ -34,3 +31,4 @@
 ### HotFix
 - 1등 당첨 금액은 20억으로 오버플로우를 고려해야한다.
   - `BigInteger`를 사용 
+  - `BigDecimal`도 사용
