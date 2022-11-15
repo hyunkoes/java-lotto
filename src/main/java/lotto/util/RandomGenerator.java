@@ -3,12 +3,11 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.contant.LottoConst;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
 public class RandomGenerator {
-    public static List<Integer> generateRandomNums(){
+    public static List<Integer> generateRandomNums() {
         List<Integer> randoms = new ArrayList<>();
         while (randoms.size() < LottoConst.LOTTO_NUM_SIZE) {
             int randomNumber = Randoms.pickNumberInRange(LottoConst.LOTTO_NUM_START, LottoConst.LOTTO_NUM_END);
@@ -16,7 +15,6 @@ public class RandomGenerator {
                 randoms.add(randomNumber);
             }
         }
-        Collections.sort(randoms);
         return randoms;
     }
 }

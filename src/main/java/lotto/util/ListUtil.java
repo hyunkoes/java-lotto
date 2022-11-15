@@ -13,9 +13,5 @@ public class ListUtil {
         }
         return convertedResult;
     }
-    // Debugging method
-    public static void printList(List<Integer> l){
-        for ( int i = 0 ; i < l.size() ; i ++ ) System.out.print(l.get(i) +  " ");
-    }
 }
 

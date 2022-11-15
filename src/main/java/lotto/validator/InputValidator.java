@@ -4,6 +4,7 @@ import lotto.contant.ErrorConst;
 import lotto.contant.LottoConst;
 import lotto.util.ListUtil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class InputValidator {
     }
 
     public static void validateWinningNums(String input) {
-        validateIsFitSize(input);
+        validateIsFitSize(input, LottoConst.LOTTO_NUM_SIZE);
         List<Integer> lottoNums = ListUtil.stringToIntegerList(input);
         validateIsInRange(lottoNums);
         validateIsDuplicate(lottoNums);
@@ -48,9 +49,19 @@ public class InputValidator {
 
     }
 
-    private static void validateIsFitSize(String input) {
-        if (input.split(",").length != LottoConst.LOTTO_NUM_SIZE)
+    private static void validateIsFitSize(String input, int size) {
+        if (input.split(",").length != size)
             throw new IllegalArgumentException(ErrorConst.NOT_SAME_NUMS);
     }
 
+    public static void validateBonusNums(String input, List<Integer> lottoNums) {
+        validateIsFitSize(input, LottoConst.BONUS_NUM_SIZE);
+        validateIsDigit(input);
+
+        List<Integer> bonusNums = ListUtil.stringToIntegerList(input);
+        validateIsInRange(bonusNums);
+
+        bonusNums.addAll(lottoNums);
+        validateIsDuplicate(bonusNums);
+    }
 }
